@@ -18,9 +18,9 @@ Any other configuration is exactly same as the original gem.
 
 ## New & Updated Generator
 
-Here is a list of the built-in methods:
+Here is a list of the new and updated methods:
 
-| built-in methods | updated methods | replaced methods |
+| new methods added | updated methods | replaced methods |
 | --- | --- | --- |
 | color_hex | job_title<sup>1</sup> | title |
 | color_name | 
