@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'byebug'
 gem 'rake'
 gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
 gem 'growl'

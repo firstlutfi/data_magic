@@ -69,5 +69,20 @@ module DataMagic
       randomize(Date::ABBR_DAYNAMES)
     end
     alias_method :dm_day_of_week_abbr, :day_of_week_abbr
+
+    #
+    # return random date within the range
+    #
+    def date_between(from = nil, to = nil, format = '%D')
+      if from.to_s.empty? or to.to_s.empty?
+        raise ArgumentError, 'Invalid date format'
+      end
+
+      start_date = from.nil? ? Date.today.strftime(format) : Date.strptime(from, format)
+      end_date = to.nil? ? Date.today.strftime(format) : Date.strptime(to, format)
+
+      Faker::Date.between(from: start_date, to: end_date).strftime(format)
+    end
+    alias_method :dm_date_between, :date_between
   end
 end

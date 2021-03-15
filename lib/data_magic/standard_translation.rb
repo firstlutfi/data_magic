@@ -44,18 +44,18 @@ module DataMagic
     alias_method :dm_name_suffix, :name_suffix
 
     #
-    # return a random title
+    # return a random job title
     #
-    def title
-      Faker::Name.title
+    def job_title
+      Faker::Job.title
     end
-    alias_method :dm_title, :title
+    alias_method :dm_job_title, :job_title
 
     #
     # return a random street address
     #
     def street_address(include_secondary=false)
-      Faker::Address.street_address(include_secondary)
+      Faker::Address.street_address(include_secondary: include_secondary)
     end
     alias_method :dm_street_address, :street_address
 
@@ -144,7 +144,7 @@ module DataMagic
     # return random words - default is 3 words
     #
     def words(number = 3)
-      Faker::Lorem.words(number).join(' ')
+      Faker::Lorem.words(number: number).join(' ')
     end
     alias_method :dm_words, :words
 
@@ -152,7 +152,7 @@ module DataMagic
     # return a random sentence - default minimum word count is 4
     #
     def sentence(min_word_count = 4)
-      Faker::Lorem.sentence(min_word_count)
+      Faker::Lorem.sentence(word_count: min_word_count)
     end
     alias_method :dm_sentence, :sentence
 
@@ -160,7 +160,7 @@ module DataMagic
     # return random sentences - default is 3 sentences
     #
     def sentences(sentence_count = 3)
-      Faker::Lorem.sentences(sentence_count).join(' ')
+      Faker::Lorem.sentences(number: sentence_count).join(' ')
     end
     alias_method :dm_sentences, :sentences
 
@@ -168,7 +168,7 @@ module DataMagic
     # return random paragraphs - default is 3 paragraphs
     #
     def paragraphs(paragraph_count = 3)
-      Faker::Lorem.paragraphs(paragraph_count).join('\n\n')
+      Faker::Lorem.paragraphs(number: paragraph_count).join('\n\n')
     end
     alias_method :dm_paragraphs, :paragraphs
 
@@ -176,15 +176,15 @@ module DataMagic
     # return random characters - default is 255 characters
     #
     def characters(character_count = 255)
-      Faker::Lorem.characters(character_count)
+      Faker::Lorem.characters(number: character_count)
     end
     alias_method :dm_characters, :characters
 
     #
     # return a random email address
     #
-    def email_address(name=nil)
-      Faker::Internet.email(name)
+    def email_address(name=nil, domain=nil)
+      Faker::Internet.email(name: name, domain: domain)
     end
     alias_method :dm_email_address, :email_address
 
@@ -275,6 +275,45 @@ module DataMagic
     end
     alias_method :dm_mask, :mask
 
+    #
+    # return a random color code in hex
+    #
+    def color_hex
+      Faker::Color.hex_color
+    end
+    alias_method :dm_color_hex, :color_hex
+
+    #
+    # return a random color name
+    #
+    def color_name
+      Faker::Color.color_name
+    end
+    alias_method :dm_color_name, :color_name
+
+    #
+    # return a random number in specified digits
+    #
+    def number(digits, leading_zero = false)
+      leading_zero ? Faker::Number.leading_zero_number(digits: digits) : Faker::Number.number(digits: digits)
+    end
+    alias_method :dm_number, :number
+
+    #
+    # return a random number in decimal
+    #
+    def decimal(before_decimal, after_decimal = 2)
+      Faker::Number.decimal(l_digits: before_decimal, r_digits: after_decimal)
+    end
+    alias_method :dm_decimal, :decimal
+
+    #
+    # merge variables
+    #
+    def merge(separator = " ", *params)
+      params.join(separator)
+    end
+    alias_method :dm_merge, :merge
 
 
     private

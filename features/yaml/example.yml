@@ -34,7 +34,7 @@ dm:
   ordered: ~sequential ['first', 'second', 'third']
   range:  ~randomize 1..5
   mask: ~mask "###-AAA_aaa"
-  title: ~title
+  job_title: ~job_title
   today: ~today
   tomorrow: ~tomorrow
   yesterday: ~yesterday
@@ -49,6 +49,12 @@ dm:
     translate_nested:
       full_name: ~full_name
       first_name: ~first_name
+  color_hex: ~color_hex
+  color_name: ~color_name
+  number: ~number(digits = 10, true)
+  decimal: ~decimal(before_decimal = 5, after_decimal = 3)
+  merge: ~merge(separator = '--', [first_name, last_name, number(3)])
+  date_between: ~date_between(from = '01/01/2021', to = '31/12/2021', format = '%d/%m/%y')
 
 dynamic:
   blah: ~blah
