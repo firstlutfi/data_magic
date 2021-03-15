@@ -70,6 +70,12 @@ module DataMagic
     end
     alias_method :dm_day_of_week_abbr, :day_of_week_abbr
 
+    ##################################################################
+    #                                                                #
+    #                   NEW TRANSLATOR STARTS HERE                   #
+    #                                                                #
+    ##################################################################
+
     #
     # return random date within the range
     #
@@ -84,5 +90,11 @@ module DataMagic
       Faker::Date.between(from: start_date, to: end_date).strftime(format)
     end
     alias_method :dm_date_between, :date_between
+
+    ##################################################################
+    #                                                                #
+    #                   NEW TRANSLATOR ENDS HERE                     #
+    #                                                                #
+    ##################################################################
   end
 end

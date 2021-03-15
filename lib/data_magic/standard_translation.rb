@@ -43,6 +43,10 @@ module DataMagic
     end
     alias_method :dm_name_suffix, :name_suffix
 
+    #################################################################################
+    #  In newer version of Faker, Faker::Name.title is changed to Faker::Job.title  #
+    #################################################################################
+
     #
     # return a random job title
     #
@@ -275,6 +279,12 @@ module DataMagic
     end
     alias_method :dm_mask, :mask
 
+    ##################################################################
+    #                                                                #
+    #                   NEW TRANSLATOR STARTS HERE                   #
+    #                                                                #
+    ##################################################################
+
     #
     # return a random color code in hex
     #
@@ -315,6 +325,11 @@ module DataMagic
     end
     alias_method :dm_merge, :merge
 
+    ##################################################################
+    #                                                                #
+    #                   NEW TRANSLATOR ENDS HERE                     #
+    #                                                                #
+    ##################################################################
 
     private
 
