@@ -20,9 +20,9 @@ Any other configuration is exactly same as the original gem.
 
 Here is a list of the built-in methods:
 
-| built-in methods | updated methods |
-| --- | --- |
-| color_hex | job_title<sup>1</sup> |
+| built-in methods | updated methods | replaced methods |
+| --- | --- | --- |
+| color_hex | job_title<sup>1</sup> | title |
 | color_name | 
 | number(digits=5, leading_zero=true) |
 | decimal(before_decimal=5, after_decimal=3) |
