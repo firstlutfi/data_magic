@@ -4,6 +4,9 @@ This gem is ported from the original data_magic gem -> [here](https://github.com
 I created this to make sure the gem stays updated with its dependencies. (The original gem seems to be unmaintained)
 
 ## How to Use
+Requirement:
+* Ruby >= 2.5.1
+* Faker >= 1.9
 
 Update your Gemfile to
 
