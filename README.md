@@ -19,6 +19,9 @@ bundle install
 ````
 Any other configuration is exactly same as the original gem.
 
+NOTE:
+If you have previously used older version of Faker, I suggest you to install [rubocop-faker](https://github.com/koic/rubocop-faker) to automatically update from positional arguments to named arguments.
+
 ## New & Updated Generator
 
 Here is a list of the new and updated methods:
