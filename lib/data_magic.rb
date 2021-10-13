@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'data_magic/core_ext/string'
 require 'data_magic/core_ext/integer'
 require 'data_magic/core_ext/hash'
@@ -29,7 +31,7 @@ module DataMagic
     end
   end
 
-  def data_for(key, additional={})
+  def data_for(key, additional = {})
     if key.is_a?(String) && key.match(%r{/})
       filename, record = key.split('/')
       DataMagic.load("#{filename}.yml")
@@ -39,6 +41,7 @@ module DataMagic
     end
     data = DataMagic.yml[record]
     raise ArgumentError, "Undefined key #{key}" unless data
+
     prep_data(data.merge(additional.key?(record) ? additional[record] : additional).deep_copy)
   end
 
@@ -49,32 +52,32 @@ module DataMagic
     DataMagic.yml_directory = fixture_folder
     fixture_files = fixture_files_on(scenario)
 
-    DataMagic.load "#{fixture_files.last}.yml" if fixture_files.count > 0
+    DataMagic.load "#{fixture_files.last}.yml" if fixture_files.count.positive?
     DataMagic.yml_directory = orig_yml_directory
   end
 
-  private
+  private_class_method
 
   def the_file
-    ENV['DATA_MAGIC_FILE'] ? ENV['DATA_MAGIC_FILE'] : 'default.yml'
+    ENV['DATA_MAGIC_FILE'] || 'default.yml'
   end
 
   def prep_data(data)
     case data
-      when Hash
-        data.each {|key, value| data[key] = prep_data(value)}
-      when Array
-        data.each_with_index{|value, i|  data[i] = prep_data(value)}
-      when String
-        return translate(data[1..-1]) if data[0, 1] == '~'
+    when Hash
+      data.each { |key, value| data[key] = prep_data(value) }
+    when Array
+      data.each_with_index { |value, i|  data[i] = prep_data(value) }
+    when String
+      return translate(data[1..-1]) if data[0, 1] == '~'
     end
     data
   end
 
   def translate(value)
     translation.send :process, value
-  rescue => error
-    fail "Failed to translate: #{value}\n Reason: #{error.message}\n"
+  rescue StandardError => e
+    raise "Failed to translate: #{value}\n Reason: #{e.message}\n"
   end
 
   def translation
@@ -90,7 +93,7 @@ module DataMagic
   def self.fixture_files_on(scenario)
     # tags for cuke 2, source_tags for cuke 1
     tags = scenario.send(scenario.respond_to?(:tags) ? :tags : :source_tags)
-    tags.map(&:name).select {|t| t =~ /@datamagic_/}.map {|t| t.gsub('@datamagic_', '').to_sym}
+    tags.map(&:name).select { |t| t =~ /@datamagic_/ }.map { |t| t.gsub('@datamagic_', '').to_sym }
   end
 
   class << self
@@ -108,5 +111,4 @@ module DataMagic
       @translators ||= []
     end
   end
-
 end

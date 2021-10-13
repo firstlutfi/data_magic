@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DataMagic
   module DateTranslation
     #
@@ -11,7 +13,7 @@ module DataMagic
     def today(format = '%D')
       Date.today.strftime(format)
     end
-    alias_method :dm_today, :today
+    alias dm_today today
 
     #
     # return tomorrow's date
@@ -25,7 +27,7 @@ module DataMagic
       tomorrow = Date.today + 1
       tomorrow.strftime(format)
     end
-    alias_method :dm_tomorrow, :tomorrow
+    alias dm_tomorrow tomorrow
 
     #
     # return yesterday's date
@@ -39,7 +41,7 @@ module DataMagic
       yesterday = Date.today - 1
       yesterday.strftime(format)
     end
-    alias_method :dm_yesterday, :yesterday
+    alias dm_yesterday yesterday
 
     #
     # return a month
@@ -47,7 +49,7 @@ module DataMagic
     def month
       randomize(Date::MONTHNAMES[1..-1])
     end
-    alias_method :dm_month, :month
+    alias dm_month month
 
     #
     # return a month abbreviation
@@ -55,7 +57,7 @@ module DataMagic
     def month_abbr
       randomize(Date::ABBR_MONTHNAMES[1..-1])
     end
-    alias_method :dm_month_abbr, :month_abbr
+    alias dm_month_abbr month_abbr
 
     #
     # return a day of the week
@@ -63,12 +65,12 @@ module DataMagic
     def day_of_week
       randomize(Date::DAYNAMES)
     end
-    alias_method :dm_day_of_week, :day_of_week
+    alias dm_day_of_week day_of_week
 
     def day_of_week_abbr
       randomize(Date::ABBR_DAYNAMES)
     end
-    alias_method :dm_day_of_week_abbr, :day_of_week_abbr
+    alias dm_day_of_week_abbr day_of_week_abbr
 
     ##################################################################
     #                                                                #
@@ -80,16 +82,14 @@ module DataMagic
     # return random date within the range
     #
     def date_between(from = nil, to = nil, format = '%D')
-      if from.to_s.empty? or to.to_s.empty?
-        raise ArgumentError, 'Invalid date format'
-      end
+      raise ArgumentError, 'Invalid date format' if from.to_s.empty? || to.to_s.empty?
 
       start_date = from.nil? ? Date.today.strftime(format) : Date.strptime(from, format)
       end_date = to.nil? ? Date.today.strftime(format) : Date.strptime(to, format)
 
       Faker::Date.between(from: start_date, to: end_date).strftime(format)
     end
-    alias_method :dm_date_between, :date_between
+    alias dm_date_between date_between
 
     ##################################################################
     #                                                                #

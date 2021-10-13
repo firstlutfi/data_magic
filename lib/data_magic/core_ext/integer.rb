@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Integer
   def days_from_today(format = '%D')
     the_day = Date.today + self
