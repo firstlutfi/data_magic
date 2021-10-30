@@ -3,13 +3,13 @@
 require File.expand_path('lib/data_magic/version', __dir__)
 
 Gem::Specification.new do |gem|
-  gem.name          = 'data_magic'
+  gem.name          = 'new_data_magic'
   gem.version       = DataMagic::VERSION
   gem.platform      = Gem::Platform::RUBY
-  gem.authors       = ['Jeff Morgan']
-  gem.email         = ['jeff.morgan@leandog.com']
+  gem.authors       = ['Jeff Morgan','Lutfi Fitroh Hadi']
+  gem.email         = ['jeff.morgan@leandog.com','lutfi1304@gmail.com']
   gem.license       = 'MIT'
-  gem.homepage      = 'http://github.com/cheezy/data_magic'
+  gem.homepage      = 'http://github.com/firstlutfi/data_magic'
   gem.summary       = 'Provides datasets to application via YAML files'
   gem.description   = 'Provides datasets to application stored in YAML files'
 
