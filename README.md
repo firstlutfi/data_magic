@@ -11,7 +11,7 @@ Requirement:
 Update your Gemfile to
 
 ````ruby
-gem 'data_magic', git: 'https://github.com/firstlutfi/data_magic.git', branch: 'master'
+gem 'new_data_magic'
 ````
 Then run 
 ````ruby
